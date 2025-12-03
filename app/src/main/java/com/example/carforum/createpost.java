@@ -57,6 +57,7 @@ public class createpost extends AppCompatActivity {
                 showmsg("post created");
 
                 // handle post creation and change author field to current user
+                // also parse the tags correctly, one entry per comma
                 throw new RuntimeException("implement post creation");
 
                 //finish();
