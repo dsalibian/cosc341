@@ -19,4 +19,13 @@ public class Post {
     public ArrayList<String> getTags() { return tags; }
     public ArrayList<String> getComments() { return comments; }
     public int getLikes() { return likes; }
+
+    public Post(String title, String author, String content) {
+        this.title    = title;
+        this.author   = author;
+        this.content  = content;
+        this.tags     = new ArrayList<String>();
+        this.comments = new ArrayList<String>();
+        this.likes    = 0;
+    }
 }
