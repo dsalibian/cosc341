@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Carforum">
         <activity
+            android:name=".createpost"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
