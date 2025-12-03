@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Carforum">
         <activity
+            android:name=".viewpost"
+            android:exported="false" />
+        <activity
+            android:name=".deletepost"
+            android:exported="false" />
+        <activity
             android:name=".editpost"
             android:exported="false" />
         <activity
