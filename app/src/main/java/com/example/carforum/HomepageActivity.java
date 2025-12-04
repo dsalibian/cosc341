@@ -174,7 +174,10 @@ public class HomepageActivity extends AppCompatActivity {
     }
 
     private void openProfile() {
-        startActivity(new Intent(HomepageActivity.this, ProfileActivity.class));
+        Intent intent = new Intent(HomepageActivity.this, ProfileActivity.class);
+        intent.putExtra("profile_name", UserSession.getCurrentUser());
+        intent.putExtra("is_self", true);
+        startActivity(intent);
     }
 
     private void openSearch() {
