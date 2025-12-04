@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Carforum">
         <activity
-            android:name=".privatechat"
+            android:name=".HomepageActivity"
             android:exported="false" />
         <activity
-            android:name=".msgsoverview"
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".viewpost"
