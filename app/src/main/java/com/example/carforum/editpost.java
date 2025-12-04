@@ -41,15 +41,12 @@ public class editpost extends AppCompatActivity {
         input_tags.setText("tag0, tag1, tag2");
         input_content.setText("sample post content");
 
-        Button cancelbtn = findViewById(R.id.cancelbtn2);
-        Button savebtn = findViewById(R.id.savebtn);
-
-        cancelbtn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cancelbtn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { finish(); }
         });
 
-        savebtn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.savebtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

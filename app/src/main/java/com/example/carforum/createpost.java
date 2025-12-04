@@ -37,10 +37,7 @@ public class createpost extends AppCompatActivity {
         TextInputEditText input_tags = findViewById(R.id.tagsinput);
         TextInputEditText input_content = findViewById(R.id.contentinput);
 
-        Button cancelbtn = findViewById(R.id.cancelbtn);
-        Button postbtn = findViewById(R.id.postbtn);
-
-        postbtn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.postbtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title   = input_title.getText().toString().trim();
@@ -64,7 +61,7 @@ public class createpost extends AppCompatActivity {
             }
         });
 
-        cancelbtn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cancelbtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { finish(); }
         });

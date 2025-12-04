@@ -2,8 +2,7 @@ package com.example.carforum;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,42 +10,35 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class deletepost extends AppCompatActivity {
+import com.google.android.material.textfield.TextInputEditText;
+
+public class privatechat extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_deletepost);
+        setContentView(R.layout.activity_privatechat);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        //int postid = getIntent().getIntExtra("postidx", 0);
-
-        TextView title = findViewById(R.id.title2);
-        TextView content = findViewById(R.id.content);
-
-        title.setText("sample title");
-        content.setText("sample post content");
-
-
-        findViewById(R.id.cancelbtn3).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.backbtn3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { finish(); }
         });
 
-        findViewById(R.id.deletebtn).setOnClickListener(new View.OnClickListener() {
+        TextInputEditText msginput = findViewById(R.id.msginput);
+
+
+        findViewById(R.id.sendbtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                throw new RuntimeException("finish deletepost");
+                String s = "send message: " + msginput.getText().toString().trim();
+                Toast.makeText(privatechat.this, s, Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

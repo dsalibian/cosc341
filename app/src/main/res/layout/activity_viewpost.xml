@@ -63,6 +63,9 @@
             android:id="@+id/commentlistlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:divider="?android:attr/listDivider"
+            android:dividerPadding="10dp"
+            android:orientation="vertical"
+            android:showDividers="middle" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

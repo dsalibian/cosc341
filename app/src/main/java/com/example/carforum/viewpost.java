@@ -31,9 +31,7 @@ public class viewpost extends AppCompatActivity {
 
         //int postid = getIntent().getIntExtra("postidx", 0);
 
-        Button backbtn = findViewById(R.id.backbtn);
-
-        backbtn.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.backbtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { finish(); }
         });
