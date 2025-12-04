@@ -21,8 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
         profileName = findViewById(R.id.profile_name);
         backButton = findViewById(R.id.back_button);
 
-        // TODO: Get the actual user name from somewhere (e.g., SharedPreferences)
-        profileName.setText("Jason");
+        profileName.setText(UserSession.getCurrentUser());
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
