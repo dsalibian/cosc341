@@ -11,21 +11,6 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    public static ArrayList<Post> posts;
-
-    void init_posts() {
-        posts = new ArrayList<>();
-
-        for(int i = 0; i < posts.size(); ++i) {
-            posts.add(new Post("title" + i, "user" + i, "content" + i));
-
-            for(int j = 0; j < 3; ++j) {
-                posts.get(i).addTag("tag" + i);
-                posts.get(i).addComment("comment" + i);
-            }
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        init_posts();
 
+        PostRepository.ensureSeeded();
 
     }
 }
