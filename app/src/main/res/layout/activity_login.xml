@@ -189,6 +189,7 @@
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
+            android:id="@+id/featureSmart"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp">
 
@@ -217,6 +218,7 @@
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
+            android:id="@+id/featureReputation"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp">
 
@@ -245,6 +247,7 @@
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
+            android:id="@+id/featureRepair"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp">
 
@@ -273,6 +276,7 @@
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
+            android:id="@+id/featureModeration"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp">
 
