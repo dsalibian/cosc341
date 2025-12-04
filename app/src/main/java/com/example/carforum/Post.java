@@ -6,7 +6,9 @@ public class Post {
     private final String id;
     private String title, author, content;
     private ArrayList<String> tags, comments;
-    private int likes;
+    private int score;
+    private boolean upvoted = false;
+    private boolean downvoted = false;
 
     public void setTitle(String title) { this.title = title; }
     public void setAuthor(String author) { this.author = author; }
@@ -25,6 +27,7 @@ public class Post {
         }
     }
     public void addComment(String comment) { this.comments.add(comment); }
+    public void setScore(int score) { this.score = score; }
 
     public String getId() { return id; }
     public String getTitle() { return title; }
@@ -32,7 +35,35 @@ public class Post {
     public String getContent() { return content; }
     public ArrayList<String> getTags() { return tags; }
     public ArrayList<String> getComments() { return comments; }
-    public int getLikes() { return likes; }
+    public int getScore() { return score; }
+
+    public void upvote() {
+        if (upvoted) {
+            score--;
+            upvoted = false;
+        } else {
+            score++;
+            upvoted = true;
+            if (downvoted) {
+                score++;
+                downvoted = false;
+            }
+        }
+    }
+
+    public void downvote() {
+        if (downvoted) {
+            score++;
+            downvoted = false;
+        } else {
+            score--;
+            downvoted = true;
+            if (upvoted) {
+                score--;
+                upvoted = false;
+            }
+        }
+    }
 
     public Post(String title, String author, String content) {
         this.id       = java.util.UUID.randomUUID().toString();
@@ -41,6 +72,6 @@ public class Post {
         this.content  = content;
         this.tags     = new ArrayList<String>();
         this.comments = new ArrayList<String>();
-        this.likes    = 0;
+        this.score    = 0;
     }
 }

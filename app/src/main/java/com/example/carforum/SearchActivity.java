@@ -40,16 +40,30 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onEditPost(String postId) {
-                startActivity(new android.content.Intent(SearchActivity.this, editpost.class)
-                        .putExtra("post_id", postId));
+                // Not used in this activity
             }
 
             @Override
             public void onDeletePost(String postId) {
-                startActivity(new android.content.Intent(SearchActivity.this, deletepost.class)
-                        .putExtra("post_id", postId));
+                // Not used in this activity
             }
-        });
+
+            @Override
+            public void onUpvote(Post post) {
+                if (post != null) {
+                    post.upvote();
+                    adapter.updateData(filterPosts(searchInput.getText().toString()));
+                }
+            }
+
+            @Override
+            public void onDownvote(Post post) {
+                if (post != null) {
+                    post.downvote();
+                    adapter.updateData(filterPosts(searchInput.getText().toString()));
+                }
+            }
+        }, true);
         resultsList.setAdapter(adapter);
 
         backButton.setOnClickListener(v -> finish());

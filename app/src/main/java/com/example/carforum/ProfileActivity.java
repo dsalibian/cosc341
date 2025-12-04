@@ -1,5 +1,6 @@
 package com.example.carforum;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -29,5 +30,11 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        findViewById(R.id.postFooter).setOnClickListener(v -> openMyPosts());
+    }
+
+    private void openMyPosts() {
+        startActivity(new Intent(ProfileActivity.this, MyPostsActivity.class));
     }
 }

@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomepageActivity extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class HomepageActivity extends AppCompatActivity {
 
         postList.setLayoutManager(new LinearLayoutManager(this));
 
-        postAdapter = new PostAdapter(PostRepository.getAll(), new PostAdapter.PostInteractionListener() {
+        postAdapter = new PostAdapter(new ArrayList<>(), new PostAdapter.PostInteractionListener() {
             @Override
             public void onViewPost(String postId) {
                 Intent intent = new Intent(HomepageActivity.this, viewpost.class);
@@ -55,18 +56,30 @@ public class HomepageActivity extends AppCompatActivity {
 
             @Override
             public void onEditPost(String postId) {
-                Intent intent = new Intent(HomepageActivity.this, editpost.class);
-                intent.putExtra("post_id", postId);
-                startActivity(intent);
+                // Not used in this activity
             }
 
             @Override
             public void onDeletePost(String postId) {
-                Intent intent = new Intent(HomepageActivity.this, deletepost.class);
-                intent.putExtra("post_id", postId);
-                startActivity(intent);
+                // Not used in this activity
             }
-        });
+
+            @Override
+            public void onUpvote(Post post) {
+                if (post != null) {
+                    post.upvote();
+                }
+                refreshPosts();
+            }
+
+            @Override
+            public void onDownvote(Post post) {
+                if (post != null) {
+                    post.downvote();
+                }
+                refreshPosts();
+            }
+        }, true);
 
         postList.setAdapter(postAdapter);
 
@@ -91,7 +104,6 @@ public class HomepageActivity extends AppCompatActivity {
         iconQuiz.setOnClickListener(v -> openQuiz());
         iconAlerts.setOnClickListener(v -> openNotifications());
         iconMessages.setOnClickListener(v -> openMessages());
-        findViewById(R.id.postFooter).setOnClickListener(v -> openMyPosts());
 
         searchHomeInput.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -115,23 +127,42 @@ public class HomepageActivity extends AppCompatActivity {
     }
 
     private void refreshPosts() {
-        postAdapter.updateData(filterPosts(currentQuery));
+        postAdapter.updateData(getPosts(currentQuery));
     }
 
-    private ArrayList<Post> filterPosts(String query) {
+    private ArrayList<Post> getPosts(String query) {
         ArrayList<Post> posts = PostRepository.getAll();
-        if (query == null || query.trim().isEmpty()) {
-            return posts;
-        }
-        String lower = query.trim().toLowerCase();
+        String lower = query == null ? "" : query.trim().toLowerCase();
+
+        // 1. Filter posts based on the search query
         ArrayList<Post> filtered = new ArrayList<>();
-        for (Post p : posts) {
-            String tags = String.join(", ", p.getTags());
-            if (p.getTitle().toLowerCase().contains(lower)
-                    || p.getContent().toLowerCase().contains(lower)
-                    || tags.toLowerCase().contains(lower)) {
-                filtered.add(p);
+        if (lower.isEmpty()) {
+            filtered.addAll(posts);
+        } else {
+            for (Post p : posts) {
+                String tags = String.join(", ", p.getTags());
+                if (p.getTitle().toLowerCase().contains(lower)
+                        || p.getContent().toLowerCase().contains(lower)
+                        || tags.toLowerCase().contains(lower)) {
+                    filtered.add(p);
+                }
             }
+        }
+
+        // 2. Sort posts based on the selected tab
+        int selectedTabPosition = homeTabs.getSelectedTabPosition();
+        TabLayout.Tab selectedTab = homeTabs.getTabAt(selectedTabPosition);
+        if (selectedTab != null && selectedTab.getText() != null) {
+            String selectedTabText = selectedTab.getText().toString();
+            if ("Popular".equalsIgnoreCase(selectedTabText)) {
+                Collections.sort(filtered, (p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
+            } else {
+                // Default to chronological order for "Home"
+                Collections.reverse(filtered); // Most recent first
+            }
+        } else {
+            // Default sorting if tab is not available
+            Collections.reverse(filtered);
         }
         return filtered;
     }
@@ -160,9 +191,5 @@ public class HomepageActivity extends AppCompatActivity {
 
     private void openNotifications() {
         startActivity(new Intent(HomepageActivity.this, NotificationsActivity.class));
-    }
-
-    private void openMyPosts() {
-        startActivity(new Intent(HomepageActivity.this, MyPostsActivity.class));
     }
 }

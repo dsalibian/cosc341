@@ -2,6 +2,7 @@ package com.example.carforum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Simple in-memory repository so activities can share the same post list.
@@ -17,11 +18,14 @@ public final class PostRepository {
             return;
         }
 
-        Post welcome = new Post("Welcome to Car Forum", "Admin",
+        Random random = new Random();
+
+        Post welcome = new Post("Welcome to KelownaCarForum", "Admin",
                 "Share your builds, ask for help, and show off new parts.");
         welcome.addTag("welcome");
         welcome.addTag("builds");
         welcome.addComment("Drop your ride photos below!");
+        welcome.setScore(random.nextInt(100));
         POSTS.add(welcome);
 
         Post oil = new Post("DIY: How to change car oil", "GarageGuru",
@@ -29,6 +33,7 @@ public final class PostRepository {
         oil.addTag("maintenance");
         oil.addTag("oil");
         oil.addComment("Remember to replace the crush washer!");
+        oil.setScore(random.nextInt(100));
         POSTS.add(oil);
 
         Post buying = new Post("What car should I buy?", "CarEnthusiast92",
@@ -37,24 +42,28 @@ public final class PostRepository {
         buying.addTag("advice");
         buying.addComment("Mazda3 hatch with the 2.5 is a solid pick.");
         buying.addComment("Check insurance on GTI before committing.");
+        buying.setScore(random.nextInt(100));
         POSTS.add(buying);
 
         Post winter = new Post("Winter tire recommendations needed", "KelownaDriver",
                 "Snow is coming early this year. Need tire suggestions for a 2018 Civic in BC.");
         winter.addTag("tires");
         winter.addTag("winter");
+        winter.setScore(random.nextInt(100));
         POSTS.add(winter);
 
         Post compact = new Post("Best compact cars of the year", "AutoCritic",
                 "Rundown of the top compacts by fuel economy, safety, and tech. Ranking inside.");
         compact.addTag("reviews");
         compact.addTag("compact");
+        compact.setScore(random.nextInt(100));
         POSTS.add(compact);
 
         Post tesla = new Post("Tesla Model 3 vs Model Y comparison", "EVFan",
                 "Real-world range, cargo space, ride quality, and heat pump performance compared.");
         tesla.addTag("ev");
         tesla.addTag("tesla");
+        tesla.setScore(random.nextInt(100));
         POSTS.add(tesla);
     }
 

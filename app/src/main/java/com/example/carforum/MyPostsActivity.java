@@ -41,7 +41,17 @@ public class MyPostsActivity extends AppCompatActivity {
             public void onDeletePost(String postId) {
                 startActivity(new Intent(MyPostsActivity.this, deletepost.class).putExtra("post_id", postId));
             }
-        });
+
+            @Override
+            public void onUpvote(Post post) {
+                // Not used in this activity
+            }
+
+            @Override
+            public void onDownvote(Post post) {
+                // Not used in this activity
+            }
+        }, false);
 
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
