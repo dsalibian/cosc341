@@ -5,14 +5,18 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
     Button joinButton, loginButton;
     TextView exploreLink;
     android.widget.EditText emailInput, passwordInput;
+    View featureSmart, featureReputation, featureRepair, featureModeration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,10 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
+        featureSmart = findViewById(R.id.featureSmart);
+        featureReputation = findViewById(R.id.featureReputation);
+        featureRepair = findViewById(R.id.featureRepair);
+        featureModeration = findViewById(R.id.featureModeration);
 
         joinButton.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
@@ -35,6 +43,19 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginButton.setOnClickListener(v -> attemptLogin());
+
+        featureSmart.setOnClickListener(v ->
+                showFeatureDialog("Smart Search", "Surfaces the best threads, users, and categories for your query.")
+        );
+        featureReputation.setOnClickListener(v ->
+                showFeatureDialog("Reputation System", "Highlights trusted contributors and quality answers.")
+        );
+        featureRepair.setOnClickListener(v ->
+                showFeatureDialog("Repair Help", "Connects you to mechanics and DIY guides for your issues.")
+        );
+        featureModeration.setOnClickListener(v ->
+                showFeatureDialog("Fair Moderation", "Keeps discussions safe and respectful for everyone.")
+        );
     }
 
     private void attemptLogin() {
@@ -51,5 +72,13 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, "Logged in as " + email, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(LoginActivity.this, HomepageActivity.class));
         finish();
+    }
+
+    private void showFeatureDialog(String title, String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Got it", null)
+                .show();
     }
 }

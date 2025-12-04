@@ -101,6 +101,7 @@ public class HomepageActivity extends AppCompatActivity {
         iconSearch.setOnClickListener(v -> openSearch());
         iconAlerts.setOnClickListener(v -> openNotifications());
         iconMessages.setOnClickListener(v -> openMessages());
+        findViewById(R.id.postFooter).setOnClickListener(v -> openMyPosts());
 
         searchHomeInput.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -161,5 +162,9 @@ public class HomepageActivity extends AppCompatActivity {
 
     private void openNotifications() {
         startActivity(new Intent(HomepageActivity.this, NotificationsActivity.class));
+    }
+
+    private void openMyPosts() {
+        startActivity(new Intent(HomepageActivity.this, MyPostsActivity.class));
     }
 }
