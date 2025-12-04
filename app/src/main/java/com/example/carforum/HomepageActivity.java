@@ -19,7 +19,7 @@ public class HomepageActivity extends AppCompatActivity {
     RecyclerView postList;
     FloatingActionButton addPostButton;
     ImageButton searchButton, alertButton, backButton;
-    ImageButton iconHome, iconSearch, iconFeed, iconAlerts;
+    ImageButton iconHome, iconSearch, iconFeed, iconAlerts, iconMessages;
     TabLayout homeTabs;
     android.widget.EditText searchHomeInput;
     PostAdapter postAdapter;
@@ -39,6 +39,7 @@ public class HomepageActivity extends AppCompatActivity {
         iconSearch = findViewById(R.id.iconSearch);
         iconFeed = findViewById(R.id.iconFeed);
         iconAlerts = findViewById(R.id.iconAlerts);
+        iconMessages = findViewById(R.id.iconMessages);
         homeTabs = findViewById(R.id.homeTabs);
         searchHomeInput = findViewById(R.id.searchHomeInput);
 
@@ -98,7 +99,8 @@ public class HomepageActivity extends AppCompatActivity {
         iconHome.setOnClickListener(v -> scrollToTop());
         iconFeed.setOnClickListener(v -> scrollToTop());
         iconSearch.setOnClickListener(v -> openSearch());
-        iconAlerts.setOnClickListener(v -> Toast.makeText(this, "Notifications coming soon", Toast.LENGTH_SHORT).show());
+        iconAlerts.setOnClickListener(v -> openNotifications());
+        iconMessages.setOnClickListener(v -> openMessages());
 
         searchHomeInput.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -151,5 +153,13 @@ public class HomepageActivity extends AppCompatActivity {
 
     private void openSearch() {
         startActivity(new Intent(HomepageActivity.this, SearchActivity.class));
+    }
+
+    private void openMessages() {
+        startActivity(new Intent(HomepageActivity.this, MessagesListActivity.class));
+    }
+
+    private void openNotifications() {
+        startActivity(new Intent(HomepageActivity.this, NotificationsActivity.class));
     }
 }

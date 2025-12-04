@@ -24,6 +24,15 @@
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
+            android:name=".MessagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MessagesListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".viewpost"
             android:exported="false" />
         <activity
