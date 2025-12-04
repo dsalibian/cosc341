@@ -1,55 +1,102 @@
 package com.example.carforum;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class viewpost extends AppCompatActivity {
+
+    private Post post;
+    private LinearLayout commentsContainer;
+    private EditText commentInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_viewpost);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        //int postid = getIntent().getIntExtra("postidx", 0);
+        String postId = getIntent().getStringExtra("post_id");
+        PostRepository.ensureSeeded();
+        post = PostRepository.getById(postId);
 
-        findViewById(R.id.backbtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { finish(); }
-        });
-
-        LinearLayout commentsContainer = findViewById(R.id.commentlistlayout);
-
-        // will need to fetch comments from the post we are viewing
-        List<String> comments = new ArrayList<>();
-        comments.add("sample comment1");
-        comments.add("sample comment2");
-        comments.add("sample comment3");
-
-        for (String commentText : comments) {
-            TextView commentView = new TextView(this);
-            commentView.setText(commentText);
-            commentView.setPadding(20, 8, 0, 8); // Add some vertical spacing
-            commentsContainer.addView(commentView);
+        if (post == null) {
+            Toast.makeText(this, "Post not found", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
 
+        ImageButton back = findViewById(R.id.backbtn);
+        TextView title = findViewById(R.id.title3);
+        TextView smallTitle = findViewById(R.id.threadTitleSmall);
+        TextView author = findViewById(R.id.postAuthor);
+        TextView tags = findViewById(R.id.tags2);
+        TextView content = findViewById(R.id.textView3);
+        commentsContainer = findViewById(R.id.commentlistlayout);
+        commentInput = findViewById(R.id.commentInput);
+        Button postCommentBtn = findViewById(R.id.postCommentBtn);
+
+        title.setText(post.getTitle());
+        smallTitle.setText(post.getTitle());
+        author.setText(post.getAuthor());
+        tags.setText(TextUtils.join(", ", post.getTags()));
+        content.setText(post.getContent());
+
+        View.OnClickListener authorClick = v -> openProfile(post.getAuthor());
+        author.setOnClickListener(authorClick);
+        title.setOnClickListener(authorClick);
+
+        back.setOnClickListener(v -> finish());
+
+        postCommentBtn.setOnClickListener(v -> {
+            String body = commentInput.getText() != null ? commentInput.getText().toString().trim() : "";
+            if (body.isEmpty()) {
+                Toast.makeText(viewpost.this, "Enter a comment", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String commenter = UserSession.getCurrentUser();
+            post.addComment(commenter, body);
+            commentInput.setText("");
+            renderComments();
+            Toast.makeText(viewpost.this, "Comment added", Toast.LENGTH_SHORT).show();
+        });
+
+        renderComments();
+    }
+
+    private void renderComments() {
+        commentsContainer.removeAllViews();
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        for (Comment c : post.getComments()) {
+            View item = inflater.inflate(R.layout.item_comment, commentsContainer, false);
+            TextView author = item.findViewById(R.id.commentAuthor);
+            TextView body = item.findViewById(R.id.commentBody);
+
+            author.setText(c.getAuthor());
+            body.setText(c.getBody());
+
+            View.OnClickListener profileClick = v -> openProfile(c.getAuthor());
+            author.setOnClickListener(profileClick);
+            item.setOnClickListener(profileClick);
+
+            commentsContainer.addView(item);
+        }
+    }
+
+    private void openProfile(String username) {
+        if (username == null) {
+            username = "Unknown";
+        }
+        startActivity(new android.content.Intent(this, ProfileActivity.class)
+                .putExtra("profile_name", username));
     }
 }

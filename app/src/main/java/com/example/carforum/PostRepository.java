@@ -21,40 +21,43 @@ public final class PostRepository {
                 "Share your builds, ask for help, and show off new parts.");
         welcome.addTag("welcome");
         welcome.addTag("builds");
-        welcome.addComment("Drop your ride photos below!");
+        welcome.addComment("Moderator", "Drop your ride photos below!");
         POSTS.add(welcome);
 
         Post oil = new Post("DIY: How to change car oil", "GarageGuru",
                 "Step-by-step guide with tools, oil weights, and torque specs. Great for first-timers.");
         oil.addTag("maintenance");
         oil.addTag("oil");
-        oil.addComment("Remember to replace the crush washer!");
+        oil.addComment("TrackDad", "Remember to replace the crush washer!");
         POSTS.add(oil);
 
         Post buying = new Post("What car should I buy?", "CarEnthusiast92",
                 "Looking for a fun daily under $15k, good on gas but still engaging. Suggestions?");
         buying.addTag("buying");
         buying.addTag("advice");
-        buying.addComment("Mazda3 hatch with the 2.5 is a solid pick.");
-        buying.addComment("Check insurance on GTI before committing.");
+        buying.addComment("MazdaFan", "Mazda3 hatch with the 2.5 is a solid pick.");
+        buying.addComment("InsureMe", "Check insurance on GTI before committing.");
         POSTS.add(buying);
 
         Post winter = new Post("Winter tire recommendations needed", "KelownaDriver",
                 "Snow is coming early this year. Need tire suggestions for a 2018 Civic in BC.");
         winter.addTag("tires");
         winter.addTag("winter");
+        winter.addComment("BCDriver", "Nokian Hakkapeliitta are pricey but worth it.");
         POSTS.add(winter);
 
         Post compact = new Post("Best compact cars of the year", "AutoCritic",
                 "Rundown of the top compacts by fuel economy, safety, and tech. Ranking inside.");
         compact.addTag("reviews");
         compact.addTag("compact");
+        compact.addComment("SpecNerd", "Any notes on road noise? Curious about Corolla hybrid.");
         POSTS.add(compact);
 
         Post tesla = new Post("Tesla Model 3 vs Model Y comparison", "EVFan",
                 "Real-world range, cargo space, ride quality, and heat pump performance compared.");
         tesla.addTag("ev");
         tesla.addTag("tesla");
+        tesla.addComment("WrenchGuy", "Model Y has way more cargo room; depends on use case.");
         POSTS.add(tesla);
     }
 
