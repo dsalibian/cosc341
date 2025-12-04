@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Post {
     private final String id;
     private String title, author, content;
-    private ArrayList<String> tags, comments;
+    private ArrayList<String> tags;
+    private ArrayList<Comment> comments;
     private int score;
     private boolean upvoted = false;
     private boolean downvoted = false;
@@ -20,13 +21,14 @@ public class Post {
         }
     }
     public void addTag(String tag) { this.tags.add(tag); }
-    public void setComments(ArrayList<String> comments) {
+    public void setComments(ArrayList<Comment> comments) {
         this.comments.clear();
         if (comments != null) {
             this.comments.addAll(comments);
         }
     }
-    public void addComment(String comment) { this.comments.add(comment); }
+    public void addComment(String author, String comment) { this.comments.add(new Comment(author, comment)); }
+    public void addComment(String comment) { this.comments.add(new Comment("Anonymous", comment)); }
     public void setScore(int score) { this.score = score; }
 
     public String getId() { return id; }
@@ -34,7 +36,7 @@ public class Post {
     public String getAuthor() { return author; }
     public String getContent() { return content; }
     public ArrayList<String> getTags() { return tags; }
-    public ArrayList<String> getComments() { return comments; }
+    public ArrayList<Comment> getComments() { return new ArrayList<>(comments); }
     public int getScore() { return score; }
 
     public void upvote() {
@@ -71,7 +73,7 @@ public class Post {
         this.author   = author;
         this.content  = content;
         this.tags     = new ArrayList<String>();
-        this.comments = new ArrayList<String>();
+        this.comments = new ArrayList<Comment>();
         this.score    = 0;
     }
 }

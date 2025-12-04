@@ -24,7 +24,7 @@ public final class PostRepository {
                 "Share your builds, ask for help, and show off new parts.");
         welcome.addTag("welcome");
         welcome.addTag("builds");
-        welcome.addComment("Drop your ride photos below!");
+        welcome.addComment("Moderator", "Drop your ride photos below!");
         welcome.setScore(random.nextInt(100));
         POSTS.add(welcome);
 
@@ -32,7 +32,7 @@ public final class PostRepository {
                 "Step-by-step guide with tools, oil weights, and torque specs. Great for first-timers.");
         oil.addTag("maintenance");
         oil.addTag("oil");
-        oil.addComment("Remember to replace the crush washer!");
+        oil.addComment("TrackDad", "Remember to replace the crush washer!");
         oil.setScore(random.nextInt(100));
         POSTS.add(oil);
 
@@ -40,8 +40,8 @@ public final class PostRepository {
                 "Looking for a fun daily under $15k, good on gas but still engaging. Suggestions?");
         buying.addTag("buying");
         buying.addTag("advice");
-        buying.addComment("Mazda3 hatch with the 2.5 is a solid pick.");
-        buying.addComment("Check insurance on GTI before committing.");
+        buying.addComment("MazdaFan", "Mazda3 hatch with the 2.5 is a solid pick.");
+        buying.addComment("InsureMe", "Check insurance on GTI before committing.");
         buying.setScore(random.nextInt(100));
         POSTS.add(buying);
 
@@ -49,6 +49,7 @@ public final class PostRepository {
                 "Snow is coming early this year. Need tire suggestions for a 2018 Civic in BC.");
         winter.addTag("tires");
         winter.addTag("winter");
+        winter.addComment("BCDriver", "Nokian Hakkapeliitta are pricey but worth it.");
         winter.setScore(random.nextInt(100));
         POSTS.add(winter);
 
@@ -56,6 +57,7 @@ public final class PostRepository {
                 "Rundown of the top compacts by fuel economy, safety, and tech. Ranking inside.");
         compact.addTag("reviews");
         compact.addTag("compact");
+        compact.addComment("SpecNerd", "Any notes on road noise? Curious about Corolla hybrid.");
         compact.setScore(random.nextInt(100));
         POSTS.add(compact);
 
@@ -63,6 +65,7 @@ public final class PostRepository {
                 "Real-world range, cargo space, ride quality, and heat pump performance compared.");
         tesla.addTag("ev");
         tesla.addTag("tesla");
+        tesla.addComment("WrenchGuy", "Model Y has way more cargo room; depends on use case.");
         tesla.setScore(random.nextInt(100));
         POSTS.add(tesla);
     }
