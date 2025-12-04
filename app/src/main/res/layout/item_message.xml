@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/msgContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="6dp"
+    android:paddingHorizontal="4dp">
+
+    <TextView
+        android:id="@+id/msgSender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sender"
+        android:textSize="12sp"
+        android:textColor="#6b7280" />
+
+    <TextView
+        android:id="@+id/msgBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message body"
+        android:textColor="#0d1628"
+        android:textSize="14sp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/msg_bubble_other" />
+
+</LinearLayout>

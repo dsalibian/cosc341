@@ -98,6 +98,15 @@
             android:src="@drawable/ic_bell"
             android:tint="#0d1628"
             android:layout_marginStart="12dp" />
+
+        <ImageButton
+            android:id="@+id/iconMessages"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_message"
+            android:tint="#0d1628"
+            android:layout_marginStart="12dp" />
     </LinearLayout>
 
     <EditText
