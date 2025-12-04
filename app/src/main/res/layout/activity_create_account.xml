@@ -50,6 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:padding="12dp"
         android:textColor="#0d1628"
         android:textColorHint="#6b7280"
