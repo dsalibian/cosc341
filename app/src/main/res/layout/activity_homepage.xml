@@ -36,21 +36,6 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/searchButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_search"
-            android:tint="#0d1628" />
-
-        <ImageButton
-            android:id="@+id/alertButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_bell"
-            android:tint="#0d1628" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,11 +50,11 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
-            android:id="@+id/iconHome"
+            android:id="@+id/iconProfile"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_home"
+            android:src="@drawable/ic_profile"
             android:tint="#0d1628" />
 
         <ImageButton
@@ -82,11 +67,11 @@
             android:layout_marginStart="12dp" />
 
         <ImageButton
-            android:id="@+id/iconFeed"
+            android:id="@+id/iconQuiz"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_chat"
+            android:src="@drawable/ic_quiz"
             android:tint="#0d1628"
             android:layout_marginStart="12dp" />
 
@@ -220,9 +205,9 @@
         android:contentDescription="Add Post"
         app:backgroundTint="#0d1628"
         app:tint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/postFooter"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

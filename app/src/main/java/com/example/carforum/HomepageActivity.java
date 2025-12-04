@@ -18,8 +18,8 @@ public class HomepageActivity extends AppCompatActivity {
 
     RecyclerView postList;
     FloatingActionButton addPostButton;
-    ImageButton searchButton, alertButton, backButton;
-    ImageButton iconHome, iconSearch, iconFeed, iconAlerts, iconMessages;
+    ImageButton backButton;
+    ImageButton iconProfile, iconSearch, iconQuiz, iconAlerts, iconMessages;
     TabLayout homeTabs;
     android.widget.EditText searchHomeInput;
     PostAdapter postAdapter;
@@ -32,12 +32,10 @@ public class HomepageActivity extends AppCompatActivity {
 
         postList = findViewById(R.id.postList);
         addPostButton = findViewById(R.id.addPostButton);
-        searchButton = findViewById(R.id.searchButton);
-        alertButton = findViewById(R.id.alertButton);
         backButton = findViewById(R.id.backButton);
-        iconHome = findViewById(R.id.iconHome);
+        iconProfile = findViewById(R.id.iconProfile);
         iconSearch = findViewById(R.id.iconSearch);
-        iconFeed = findViewById(R.id.iconFeed);
+        iconQuiz = findViewById(R.id.iconQuiz);
         iconAlerts = findViewById(R.id.iconAlerts);
         iconMessages = findViewById(R.id.iconMessages);
         homeTabs = findViewById(R.id.homeTabs);
@@ -79,14 +77,6 @@ public class HomepageActivity extends AppCompatActivity {
 
         backButton.setOnClickListener(v -> finish());
 
-        searchButton.setOnClickListener(v -> {
-            openSearch();
-        });
-
-        alertButton.setOnClickListener(v -> {
-            Toast.makeText(this, "Notifications coming soon", Toast.LENGTH_SHORT).show();
-        });
-
         homeTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) { refreshPosts(); }
@@ -96,9 +86,9 @@ public class HomepageActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) { }
         });
 
-        iconHome.setOnClickListener(v -> scrollToTop());
-        iconFeed.setOnClickListener(v -> scrollToTop());
+        iconProfile.setOnClickListener(v -> openProfile());
         iconSearch.setOnClickListener(v -> openSearch());
+        iconQuiz.setOnClickListener(v -> openQuiz());
         iconAlerts.setOnClickListener(v -> openNotifications());
         iconMessages.setOnClickListener(v -> openMessages());
 
@@ -151,8 +141,16 @@ public class HomepageActivity extends AppCompatActivity {
         }
     }
 
+    private void openProfile() {
+        startActivity(new Intent(HomepageActivity.this, ProfileActivity.class));
+    }
+
     private void openSearch() {
         startActivity(new Intent(HomepageActivity.this, SearchActivity.class));
+    }
+
+    private void openQuiz() {
+        startActivity(new Intent(HomepageActivity.this, QuizActivity.class));
     }
 
     private void openMessages() {

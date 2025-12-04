@@ -1,5 +1,6 @@
 package com.example.carforum;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -24,5 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         PostRepository.ensureSeeded();
 
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
     }
 }

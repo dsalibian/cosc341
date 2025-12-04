@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Carforum">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuizActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomepageActivity"
             android:exported="false" />
         <activity
