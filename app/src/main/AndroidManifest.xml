@@ -33,6 +33,9 @@
             android:name=".NotificationsActivity"
             android:exported="false" />
         <activity
+            android:name=".MyPostsActivity"
+            android:exported="false" />
+        <activity
             android:name=".viewpost"
             android:exported="false" />
         <activity
